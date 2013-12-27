@@ -16,7 +16,7 @@ simply copy the output or pipe to a file that you would like to save for later.
 Examples
 ---
        windows_certs::pfx{"My Certs Friendly Name":
-                cert_location           => "c:\\stage\\this.domain.pfx",
+                cert_stage_location           => "c:\\stage\\this.domain.pfx",
                 secure_string_password  => $certPass,
                 source_location         => "puppet:///extra_files/this.domain.pfx"
        }

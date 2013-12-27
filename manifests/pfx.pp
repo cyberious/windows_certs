@@ -1,4 +1,3 @@
-
 define windows_certs::pfx ($cert_name = $title,$cert_stage_location,$cert_secure_pass,$cert_store = "WebHosting",$source_location){
 
   validate_string($cert_name)
