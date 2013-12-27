@@ -1,4 +1,5 @@
 Windows_Certs
+[![Build Status](https://travis-ci.org/cyberious/windows_certs.png?branch=master)](https://travis-ci.org/cyberious/windows_certs)
 
 Usage
 ---
@@ -31,4 +32,5 @@ Examples
 Future plans
 ---
 Force Cert removal if not in the specified location
+
 Provide backwards compatablity to windows 2008 and higher currently only 2012 and higher
