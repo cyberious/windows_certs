@@ -4,7 +4,7 @@ describe 'windows_certs::pfx' do
 
   describe 'validate good config' do
     let(:title) {"mydomain.com"}
-    let(:facts){{:operatingsystem => "windows"}}
+    let(:facts){{:operatingsystem => "windows",:kernelmajversion => "6.2"}}
     let(:params){
       {
         :cert_stage_location => "C:\\temp\\mydomain.com.pfx",
@@ -15,7 +15,13 @@ describe 'windows_certs::pfx' do
 
     it{
       should contain_file('C:\\temp\\mydomain.com.pfx').with_source("puppet://extra_files/mydomain.com.pfx")
-      should contain_exec('Insert-PFX-Cert-mydomain.com').with_provider("powershell")
+      should contain_exec('Insert-PFX-Cert-mydomain.com').with(
+                 {
+                  "provider" => "powershell",
+                  "command" => "Import-Module WebAdministration; Import-PfxCertificate -FilePath C:\\temp\\mydomain.com.pfx -CertStoreLocation Cert:\\LocalMachine\\WebHosting -Password (\"h123lkjojlaskdfjou12308fkljasdf084\" | ConvertTo-SecureString -Key @(1..32))",
+                  "onlyif" => "Import-Module WebAdministration; if (gci cert:\\LocalMachine${cert_store} -R | where FriendlyName -eq \"mydomain.com\") { exit 1 } else { exit 0 }"
+                }
+             )
     }
   end
 
