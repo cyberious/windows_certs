@@ -34,4 +34,4 @@ Future plans
 ---
 Force Cert removal if not in the specified location
 
-Provide backwards compatablity to windows 2008 and higher currently only 2012 and higher
+Provide backwards compatibility to windows 2008 and higher currently only 2012 and higher
